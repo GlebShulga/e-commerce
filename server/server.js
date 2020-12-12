@@ -5,10 +5,31 @@ import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
-
+import axios from 'axios'
 import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
+
+const { readFile } = require('fs').promises
+// Для получения курсов валют используйте https://exchangeratesapi.io/
+// Добавьте юрл удалени всех логов (удаление фаила) delete /api/v1/logs
+// Api разрабатываете в соответсвии с требованиями сами, используя REST
+
+// GET https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR,CAD,RUB
+
+// {
+//   "base": "EUR",
+//   "date": "2018-04-08",
+//   "rates": {
+//     "CAD": 1.565,
+//     "CHF": 1.1798,
+//     "GBP": 0.87295,
+//     "SEK": 10.2983,
+//     "EUR": 1.092,
+//     "USD": 1.2234,
+//     ...
+//   }
+// }
 
 const { default: Root } = require('../dist/assets/js/ssr/root.bundle')
 
@@ -26,6 +47,18 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
+
+server.get('/api/v1/rates', (req, res) => {
+  axios
+    .get('https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR,CAD,RUB,USD')
+    .then(({ data }) => res.json(data.rates))
+})
+
+server.get('/api/v1/data', (req, res) => {
+  readFile(`${__dirname}/data/data.json`, { encoding: 'utf8' }).then((data) =>
+    res.json(JSON.parse(data))
+  )
+})
 
 server.use('/api/', (req, res) => {
   res.status(404)
