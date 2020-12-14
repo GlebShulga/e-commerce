@@ -11,25 +11,6 @@ import config from './config'
 import Html from '../client/html'
 
 const { readFile } = require('fs').promises
-// Для получения курсов валют используйте https://exchangeratesapi.io/
-// Добавьте юрл удалени всех логов (удаление фаила) delete /api/v1/logs
-// Api разрабатываете в соответсвии с требованиями сами, используя REST
-
-// GET https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR,CAD,RUB
-
-// {
-//   "base": "EUR",
-//   "date": "2018-04-08",
-//   "rates": {
-//     "CAD": 1.565,
-//     "CHF": 1.1798,
-//     "GBP": 0.87295,
-//     "SEK": 10.2983,
-//     "EUR": 1.092,
-//     "USD": 1.2234,
-//     ...
-//   }
-// }
 
 const { default: Root } = require('../dist/assets/js/ssr/root.bundle')
 

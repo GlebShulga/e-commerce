@@ -7,7 +7,8 @@ const SET_CURRENT_RATE = 'SET_CURRENT_RATE'
 const initialState = {
   list: [],
   rates: {},
-  currentRate: 1
+  currentRate: 1,
+  currency: 'USD'
 }
 
 export default (state = initialState, action) => {
@@ -27,9 +28,11 @@ export default (state = initialState, action) => {
       }
     }
     case SET_CURRENT_RATE: {
+      const { currency, symbol } = action.current
       return {
         ...state,
-        currentRate: action.current
+        currentRate: currency,
+        currency: symbol
       }
     }
     default:
@@ -53,6 +56,25 @@ export function setCurrentRate(currencyType) {
   return (dispatch, getState) => {
     const store = getState()
     const { rates } = store.goods
-    dispatch({ type: SET_CURRENT_RATE, current: rates[currencyType] })
+    dispatch({
+      type: SET_CURRENT_RATE,
+      current: { currency: rates[currencyType], symbol: currencyType }
+    })
+  }
+}
+
+export function sort(str) {
+  return (dispatch, getState) => {
+    const store = getState()
+    const { list } = store.goods
+    const typeOfSort = JSON.parse(str)
+    const sortedList = [...list].sort((a, b) =>
+        (typeOfSort.type === 'price' ? a.price - b.price : a.title.localeCompare(b.title)) *
+        typeOfSort.order
+    )
+    dispatch({
+      type: GET_GOODS,
+      list: sortedList
+    })
   }
 }

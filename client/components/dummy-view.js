@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Head from './head'
 import Header from './header'
+import Card from './card'
 
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
@@ -19,23 +20,28 @@ const Dummy = () => {
   const dispatch = useDispatch()
   const listOfGoods = useSelector((s) => s.goods.list)
   const currentRate = useSelector((s) => s.goods.currentRate)
+  const currencyType = useSelector((s) => s.goods.currency)
 
-  useEffect(() => dispatch(getGoods(), []))
-  useEffect(() => dispatch(getCurrency(), []))
+  useEffect(() => {
+    dispatch(getGoods())
+  }, [])
+  useEffect(() => {
+    dispatch(getCurrency())
+  }, [])
   return (
     <div>
       <Head title="Hello" />
       <Header />
-      <div>
-        {listOfGoods.map((it) => {
-          return (
-            <div key={it.id}>
-              <div>{it.title}</div>
-              <div>{(it.price * currentRate).toFixed(2)}</div>
-              <div>------------</div>
-            </div>
-          )
-        })}
+      <div className="container my-12 mx-auto px-4 md:px-12">
+        <div className="flex flex-wrap -mx-1 lg:-mx-4">
+          <div className="grid md:grid-cols-3 gap-8 m-5 max-w-5xl m-auto">
+            {listOfGoods.map((it) => {
+              return (
+                <Card key={it.id} it={it} currentRate={currentRate} currencyType={currencyType} />
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
   )
