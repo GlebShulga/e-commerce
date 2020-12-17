@@ -68,7 +68,8 @@ export function sort(str) {
     const store = getState()
     const { list } = store.goods
     const typeOfSort = JSON.parse(str)
-    const sortedList = [...list].sort((a, b) =>
+    const sortedList = [...list].sort(
+      (a, b) =>
         (typeOfSort.type === 'price' ? a.price - b.price : a.title.localeCompare(b.title)) *
         typeOfSort.order
     )

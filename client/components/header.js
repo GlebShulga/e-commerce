@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Currency from './currency'
 import Sort from './sort'
+import CartIcon from './cartIcon'
 
 const Header = () => {
   return (
@@ -10,8 +11,11 @@ const Header = () => {
         Best Shop
       </Link>
       <div className="container mx-auto flex justify-between p-5 flex-col md:flex-row items-center">
-        <Currency />
-        <Sort />
+        <div className="flex flex-col items-center">
+          <Currency />
+          <Sort />
+        </div>
+        <CartIcon />
       </div>
     </div>
   )

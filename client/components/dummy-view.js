@@ -6,21 +6,12 @@ import Card from './card'
 
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
-// Страница 1. Главная - '/'
-
-//     Содержит в себе заголовок
-
-//     Любой текст #brand-name при клике на который переходит на главную
-//     Ссылка с полем #order-count(внутри которого находится количство товаров в корзине) - /basket
-//     3 кнопки USD | EUR | CAD. Которые должны переключать валюту товаров
-//     Кнопки сортировки товаров - по цене(#sort-price)(от большего к меньшему)- по названию(#sort-name)(алфавитный порядок).
-//     Общая сумма всех товаров в корзине
-
 const Dummy = () => {
   const dispatch = useDispatch()
   const listOfGoods = useSelector((s) => s.goods.list)
   const currentRate = useSelector((s) => s.goods.currentRate)
   const currencyType = useSelector((s) => s.goods.currency)
+  const basket = useSelector((s) => s.basket.listOfIds)
 
   useEffect(() => {
     dispatch(getGoods())
@@ -36,8 +27,15 @@ const Dummy = () => {
         <div className="flex flex-wrap -mx-1 lg:-mx-4">
           <div className="grid md:grid-cols-3 gap-8 m-5 max-w-5xl m-auto">
             {listOfGoods.map((it) => {
+              const basketCount = basket.find((itBas) => itBas.id === it.id)
               return (
-                <Card key={it.id} it={it} currentRate={currentRate} currencyType={currencyType} />
+                <Card
+                  key={it.id}t
+                  it={it}
+                  currentRate={currentRate}
+                  currencyType={currencyType}
+                  basketCount={basketCount?.quantity}
+                />
               )
             })}
           </div>
@@ -50,3 +48,13 @@ const Dummy = () => {
 Dummy.propTypes = {}
 
 export default React.memo(Dummy)
+
+// Страница 1. Главная - '/'
+
+//     Содержит в себе заголовок
+
+//     Любой текст #brand-name при клике на который переходит на главную
+//     Ссылка с полем #order-count(внутри которого находится количство товаров в корзине) - /basket
+//     3 кнопки USD | EUR | CAD. Которые должны переключать валюту товаров
+//     Кнопки сортировки товаров - по цене(#sort-price)(от большего к меньшему)- по названию(#sort-name)(алфавитный порядок).
+//     Общая сумма всех товаров в корзине
