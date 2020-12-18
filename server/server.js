@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
 
-const { readFile } = require('fs').promises
+const { readFile, writeFile } = require('fs').promises
 
 const { default: Root } = require('../dist/assets/js/ssr/root.bundle')
 
@@ -39,6 +39,23 @@ server.get('/api/v1/data', (req, res) => {
   readFile(`${__dirname}/data/data.json`, { encoding: 'utf8' }).then((data) =>
     res.json(JSON.parse(data))
   )
+})
+
+server.post('/api/v1/log', (req, res) => {
+  const newLog = req.body
+  readFile(`${__dirname}/data/log.json`, { encoding: 'utf8' })
+    .then((oldLogs) => {
+      const parsedLogs = JSON.parse(oldLogs)
+      writeFile(`${__dirname}/data/log.json`, JSON.stringify([...parsedLogs, newLog]), {
+        encoding: 'utf8'
+      })
+    })
+    .catch(() =>
+      writeFile(`${__dirname}/data/log.json`, JSON.stringify([newLog]), {
+        encoding: 'utf8'
+      })
+    )
+  res.json({ status: 'ok' })
 })
 
 server.use('/api/', (req, res) => {

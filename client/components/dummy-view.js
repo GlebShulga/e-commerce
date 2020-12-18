@@ -6,6 +6,7 @@ import Card from './card'
 
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
+
 const Dummy = () => {
   const dispatch = useDispatch()
   const listOfGoods = useSelector((s) => s.goods.list)
@@ -30,7 +31,7 @@ const Dummy = () => {
               const basketCount = basket.find((itBas) => itBas.id === it.id)
               return (
                 <Card
-                  key={it.id}t
+                  key={it.id}
                   it={it}
                   currentRate={currentRate}
                   currencyType={currencyType}
@@ -49,12 +50,3 @@ Dummy.propTypes = {}
 
 export default React.memo(Dummy)
 
-// Страница 1. Главная - '/'
-
-//     Содержит в себе заголовок
-
-//     Любой текст #brand-name при клике на который переходит на главную
-//     Ссылка с полем #order-count(внутри которого находится количство товаров в корзине) - /basket
-//     3 кнопки USD | EUR | CAD. Которые должны переключать валюту товаров
-//     Кнопки сортировки товаров - по цене(#sort-price)(от большего к меньшему)- по названию(#sort-name)(алфавитный порядок).
-//     Общая сумма всех товаров в корзине

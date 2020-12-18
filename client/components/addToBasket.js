@@ -18,7 +18,7 @@ const AddToBasket = ({ it, basketCount }) => {
       </div>
       <button
         type="button"
-        className="font-semibold border-l  bg-blue-600 hover:bg-blue-500 text-white border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer"
+        className="font-semibold border-l bg-blue-600 hover:bg-blue-500 text-white border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer"
         onClick={() => dispatch(addId(it.id, 1))}
       >
         <span className="m-auto">+</span>
