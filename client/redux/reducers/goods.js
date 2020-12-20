@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const GET_GOODS = 'GET_GOODS'
 const GET_CURRENCY = 'GET_CURRENCY'
-const SET_CURRENT_RATE = 'SET_CURRENT_RATE'
+export const SET_CURRENT_RATE = 'SET_CURRENT_RATE'
+export const GET_SORTED_GOODS = 'GET_SORTED_GOODS'
 
 const initialState = {
   list: [],
@@ -13,7 +14,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_GOODS: {
+    case GET_GOODS:
+    case GET_SORTED_GOODS: {
       const { list } = action
       return {
         ...state,
@@ -55,10 +57,10 @@ export function getCurrency() {
 export function setCurrentRate(currencyType) {
   return (dispatch, getState) => {
     const store = getState()
-    const { rates } = store.goods
+    const { rates, currency } = store.goods
     dispatch({
       type: SET_CURRENT_RATE,
-      current: { currency: rates[currencyType], symbol: currencyType }
+      current: { currency: rates[currencyType], symbol: currencyType, previousCurrency: currency }
     })
   }
 }
@@ -74,8 +76,9 @@ export function sort(str) {
         typeOfSort.order
     )
     dispatch({
-      type: GET_GOODS,
-      list: sortedList
+      type: GET_SORTED_GOODS,
+      list: sortedList,
+      sortType: typeOfSort.type
     })
   }
 }

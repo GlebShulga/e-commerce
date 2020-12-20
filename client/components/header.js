@@ -21,6 +21,9 @@ const Header = () => {
         </div>
         <CartIcon />
       </div>
+      <Link to="/log" className="font-bold text-xl">
+        log history
+      </Link>
     </div>
   )
 }
