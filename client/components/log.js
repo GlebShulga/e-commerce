@@ -12,17 +12,20 @@ const Log = () => {
   return (
     <>
       <Header />
-      <div>{logList.map((it) => {
+      <div className="flex justify-end px-4">
+        <button
+          type="button"
+          className="border border-gray-500 text-gray-500 rounded-md px-4 py-2 mx-2 transition duration-500 ease select-none hover:text-white hover:bg-gray-600 focus:outline-none focus:shadow-outline"
+          onClick={() => dispatch(delLogs())}
+        >
+          Delete Logs
+        </button>
+      </div>
+      <div>
+        {logList.map((it) => {
           return <div key={it.log}>{it.log}</div>
         })}
       </div>
-      <button
-        type="button"
-        className="border border-blue-500 text-blue-500 rounded-md px-4 py-2 mx-2 transition duration-500 ease select-none hover:text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline"
-        onClick={() => dispatch(delLogs())}
-      >
-        Delete Log
-      </button>
     </>
   )
 }

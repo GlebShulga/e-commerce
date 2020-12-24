@@ -5,7 +5,6 @@ import Header from './header'
 import Card from './card'
 
 import { getGoods, getCurrency } from '../redux/reducers/goods'
-import { getLogs } from '../redux/reducers/log'
 
 const Dummy = () => {
   const dispatch = useDispatch()
@@ -19,9 +18,6 @@ const Dummy = () => {
   }, [])
   useEffect(() => {
     dispatch(getCurrency())
-  }, [])
-  useEffect(() => {
-    dispatch(getLogs())
   }, [])
   return (
     <div>

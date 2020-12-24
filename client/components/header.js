@@ -19,11 +19,13 @@ const Header = () => {
           <Currency />
           <Sort />
         </div>
-        <CartIcon />
+        <div className="flex flex-col items-center">
+          <CartIcon />
+          <Link to="/log" className="font-bold text-sm py-3">
+            log history
+          </Link>
+        </div>
       </div>
-      <Link to="/log" className="font-bold text-xl">
-        log history
-      </Link>
     </div>
   )
 }

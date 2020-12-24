@@ -12,6 +12,13 @@ const initialState = {
   currency: 'USD'
 }
 
+const getImage = (products) => {
+  return products.map((it) => ({
+    ...it,
+    image: `https://source.unsplash.com/800x600/?${/\w+(?=\s)/gi.exec(it.title)}`
+  }))
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_GOODS:
@@ -19,7 +26,7 @@ export default (state = initialState, action) => {
       const { list } = action
       return {
         ...state,
-        list
+        list: getImage(list)
       }
     }
     case GET_CURRENCY: {
