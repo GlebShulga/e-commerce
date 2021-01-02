@@ -1,5 +1,4 @@
 export const ADD_ID = 'ADD_ID'
-const SET_ID = 'SET_ID'
 const initialState = {
   listOfIds: []
 }
@@ -8,9 +7,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_ID: {
       return { ...state, listOfIds: action.listOfIds, productTitle: action.productTitle }
-    }
-    case SET_ID: {
-      return { ...state, listOfIds: action.listOfIds }
     }
     default:
       return state
@@ -45,15 +41,6 @@ export function addId(id, number = 1) {
       number,
       id,
       productTitle: productData.title
-    })
-  }
-}
-
-export function getLocalBasket(argument) {
-  return (dispatch) => {
-    dispatch({
-      type: SET_ID,
-      listOfIds: JSON.parse(argument)
     })
   }
 }

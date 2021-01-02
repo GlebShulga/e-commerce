@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useBeforeunload } from 'react-beforeunload'
 import Currency from './currency'
 import Sort from './sort'
 import CartIcon from './cartIcon'
 
+import { getGoods, getCurrency } from '../redux/reducers/goods'
+
 const Header = () => {
   const basketState = useSelector((s) => s.basket.listOfIds)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getGoods())
+  }, [])
+  useEffect(() => {
+    dispatch(getCurrency())
+  }, [])
   return (
     <div id="brand-name" className="text-center my-1 bg-gray-50">
       {useBeforeunload(() => localStorage.setItem('basketSaving', JSON.stringify(basketState)))}

@@ -12,7 +12,8 @@ import Html from '../client/html'
 
 const { readFile, writeFile, unlink } = require('fs').promises
 
-const { default: Root } = require('../dist/assets/js/ssr/root.bundle')
+const Root = {}
+// const { default: Root } = require('../dist/assets/js/ssr/root.bundle')
 
 let connections = []
 
