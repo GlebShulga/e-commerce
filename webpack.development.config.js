@@ -16,7 +16,7 @@ const config = {
   devtool: 'eval-source-map',
   entry: [
     'babel-polyfill',
-    'react-hot-loader/patch',
+    // 'react-hot-loader/patch',
     'webpack-dev-server/client?http://0.0.0.0:8087',
     'webpack/hot/only-dev-server',
     './main.js'
@@ -219,7 +219,7 @@ const config = {
         sockIntegration: 'whm'
       }
     }), // new HardSourceWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),

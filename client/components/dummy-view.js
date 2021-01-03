@@ -1,24 +1,14 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Head from './head'
 import Header from './header'
 import Card from './card'
 
-import { getGoods, getCurrency } from '../redux/reducers/goods'
-
 const Dummy = () => {
-  const dispatch = useDispatch()
   const listOfGoods = useSelector((s) => s.goods.list)
   const currentRate = useSelector((s) => s.goods.currentRate)
   const currencyType = useSelector((s) => s.goods.currency)
   const basket = useSelector((s) => s.basket.listOfIds)
-
-  useEffect(() => {
-    dispatch(getGoods())
-  }, [])
-  useEffect(() => {
-    dispatch(getCurrency())
-  }, [])
   return (
     <div>
       <Head title="Hello" />
@@ -48,4 +38,3 @@ const Dummy = () => {
 Dummy.propTypes = {}
 
 export default React.memo(Dummy)
-

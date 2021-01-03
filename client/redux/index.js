@@ -12,15 +12,25 @@ export const history = createHistory()
 
 const isBrowser = typeof window !== 'undefined'
 
-const initialState = {}
+let preloadedState = {}
 const enhancers = []
 const middleware = [thunk, routerMiddleware(history)]
+
+const localBasket = localStorage.getItem('basketSaving')
+
+if (localBasket) {
+  preloadedState = {
+    basket: {
+      listOfIds: JSON.parse(localBasket)
+    }
+  }
+}
 
 const composeFunc = process.env.NODE_ENV === 'development' ? composeWithDevTools : compose
 
 const composedEnhancers = composeFunc(applyMiddleware(...middleware), ...enhancers)
 
-const store = createStore(rootReducer(history), initialState, composedEnhancers)
+const store = createStore(rootReducer(history), preloadedState, composedEnhancers)
 let socket
 
 if (typeof ENABLE_SOCKETS !== 'undefined' && ENABLE_SOCKETS) {
