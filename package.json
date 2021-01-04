@@ -23,7 +23,7 @@
         "build:prod": "cross-env NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --colors",
         "build:ssr": "cross-env NODE_ENV=production webpack --config webpack.ssr.config.js --progress --profile --colors",
         "build": "npm run build:prod && npm run build:ssr",
-        "heroku-postbuild": "npm run build:prod",
+        "heroku-postbuild": "npm run build:prod && npm run build:ssr",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook"
     },
