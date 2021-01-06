@@ -86,24 +86,17 @@ export default (state = initialState, action) => {
 
 export function getLogs() {
   return (dispatch) => {
-    axios('api/v1/log').then(({ data: list }) => dispatch({ type: GET_LOGS, list }))
+    axios('api/v1/log')
+      .then(({ data: list }) => dispatch({ type: GET_LOGS, list }))
+      .catch(() => 'getLogs ERR')
   }
 }
 
 export function delLogs() {
   return (dispatch) => {
-    axios.delete('api/v1/log').then(() => dispatch({ type: GET_LOGS, list: [] }))
+    axios
+      .delete('api/v1/log')
+      .then(() => dispatch({ type: GET_LOGS, list: [] }))
+      .catch(() => 'delLogs ERR')
   }
 }
-
-// Страница 3. Логи - /logs
-// Каждое действие юзера должно быть записано на сервере и выведено в таблице логов
-// Варианты действий
-
-// change currency from ${currency1} to ${currency2} +
-// add ${item-title} to the backet +
-// remove ${item-title} from the backet +
-// navigate to ${url} page +
-// sort by ${title}
-// time of action in utc format (+new Date()) +
-// Если обновить страницу, то логи должны сохранится.

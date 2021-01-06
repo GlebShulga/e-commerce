@@ -42,16 +42,16 @@ server.get('/api/v1/data', (req, res) => {
   )
 })
 
-server.post('/api/v1/log', (req, res) => {
+server.post('/api/v1/log', async (req, res) => {
   const newLog = req.body
-  readFile(`${__dirname}/data/log.json`, { encoding: 'utf8' })
+  await readFile(`${__dirname}/data/log.json`, { encoding: 'utf8' })
     .then((oldLogs) => {
       const parsedLogs = JSON.parse(oldLogs)
       writeFile(`${__dirname}/data/log.json`, JSON.stringify([...parsedLogs, newLog]), {
         encoding: 'utf8'
       })
     })
-    .catch(() =>
+    .catch(async () =>
       writeFile(`${__dirname}/data/log.json`, JSON.stringify([newLog]), {
         encoding: 'utf8'
       })
