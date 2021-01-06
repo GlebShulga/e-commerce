@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         data: {
           log: messageBasket
         }
-      })
+      }).catch(() => 'Something Wrong')
       return {
         ...state,
         list: [...state.list, messageBasket]
@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
         data: {
           log: messageCurrency
         }
-      })
+      }).catch(() => 'Something Wrong')
       return {
         ...state,
         list: [...state.list, messageCurrency]
@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
         data: {
           log: messageUrl
         }
-      })
+      }).catch(() => 'Something Wrong')
       return {
         ...state,
         list: [...state.list, messageUrl]
@@ -73,7 +73,7 @@ export default (state = initialState, action) => {
         data: {
           log: messageSort
         }
-      })
+      }).catch(() => 'Something Wrong')
       return {
         ...state,
         list: [...state.list, messageSort]
@@ -88,7 +88,7 @@ export function getLogs() {
   return (dispatch) => {
     axios('api/v1/log')
       .then(({ data: list }) => dispatch({ type: GET_LOGS, list }))
-      .catch(() => 'getLogs ERR')
+      .catch(() => dispatch({ type: GET_LOGS, list: [] }))
   }
 }
 
@@ -97,6 +97,6 @@ export function delLogs() {
     axios
       .delete('api/v1/log')
       .then(() => dispatch({ type: GET_LOGS, list: [] }))
-      .catch(() => 'delLogs ERR')
+      .catch(() => dispatch({ type: GET_LOGS, list: [] }))
   }
 }

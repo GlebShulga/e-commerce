@@ -11,7 +11,7 @@ const Sort = () => {
   return (
     <div>
       <select onChange={(e) => dispatch(sort(e.target.value))} className={sortButton}>
-        <option disabled selected hidden>
+        <option disabled hidden>
           Sort by
         </option>
         <option className={sortHover} value={`{ "type": "price", "order": 1 }`}>
