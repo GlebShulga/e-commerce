@@ -4,7 +4,7 @@ import Head from './head'
 import Header from './header'
 import Card from './card'
 
-const Dummy = () => {
+const MainPage = () => {
   const listOfGoods = useSelector((s) => s.goods.list)
   const currentRate = useSelector((s) => s.goods.currentRate)
   const currencyType = useSelector((s) => s.goods.currency)
@@ -35,6 +35,6 @@ const Dummy = () => {
   )
 }
 
-Dummy.propTypes = {}
+MainPage.propTypes = {}
 
-export default React.memo(Dummy)
+export default React.memo(MainPage)

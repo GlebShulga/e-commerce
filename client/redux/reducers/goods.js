@@ -51,13 +51,17 @@ export default (state = initialState, action) => {
 
 export function getGoods() {
   return (dispatch) => {
-    axios('/api/v1/data').then(({ data: list }) => dispatch({ type: GET_GOODS, list }))
+    axios('/api/v1/data')
+      .then(({ data: list }) => dispatch({ type: GET_GOODS, list }))
+      .catch(() => 'err')
   }
 }
 
 export function getCurrency() {
   return (dispatch) => {
-    axios('/api/v1/rates').then(({ data: rates }) => dispatch({ type: GET_CURRENCY, rates }))
+    axios('/api/v1/rates')
+      .then(({ data: rates }) => dispatch({ type: GET_CURRENCY, rates }))
+      .catch(() => 'err')
   }
 }
 
