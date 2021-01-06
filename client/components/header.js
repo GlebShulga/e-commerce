@@ -14,10 +14,10 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getGoods())
-  }, [])
+  }, [dispatch])
   useEffect(() => {
     dispatch(getCurrency())
-  }, [])
+  }, [dispatch])
   return (
     <div id="brand-name" className="text-center my-1 bg-gray-50">
       {useBeforeunload(() => localStorage.setItem('basketSaving', JSON.stringify(basketState)))}

@@ -53,7 +53,7 @@ export function getGoods() {
   return (dispatch) => {
     axios('/api/v1/data')
       .then(({ data: list }) => dispatch({ type: GET_GOODS, list }))
-      .catch(() => 'err')
+      .catch(() => dispatch({ type: GET_GOODS, list: [] }))
   }
 }
 
@@ -61,7 +61,7 @@ export function getCurrency() {
   return (dispatch) => {
     axios('/api/v1/rates')
       .then(({ data: rates }) => dispatch({ type: GET_CURRENCY, rates }))
-      .catch(() => 'err')
+      .catch(() => dispatch({ type: GET_CURRENCY, rates: {} }))
   }
 }
 

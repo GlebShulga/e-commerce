@@ -8,7 +8,7 @@ const Log = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getLogs())
-  }, [])
+  }, [dispatch])
   return (
     <>
       <Header />
