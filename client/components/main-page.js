@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Head from './head'
 import Header from './header'
 import Card from './card'
+import ScrollArrow from './scrollArrow'
 
 const MainPage = () => {
   const listOfGoods = useSelector((s) => s.goods.list)
@@ -31,6 +32,7 @@ const MainPage = () => {
               )
             })}
           </div>
+          <ScrollArrow />
         </div>
       </div>
     </div>
