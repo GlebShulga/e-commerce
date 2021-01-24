@@ -77,7 +77,7 @@ server.use('/api/', (req, res) => {
 
 const [htmlStart, htmlEnd] = Html({
   body: 'separator',
-  title: 'Skillcrucial - Become an IT HERO'
+  title: 'Become an IT HERO'
 }).split('separator')
 
 server.get('/', (req, res) => {
