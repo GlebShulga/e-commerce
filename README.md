@@ -1,29 +1,33 @@
 This project was made with [Create React App](https://github.com/facebook/create-react-app), using [Redux](https://redux.js.org/).
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+- Sign-Up/Sign-In with validation and api error popups
+- Fully Responsive
+- 2 types of sorting
+- Currency changing
+- Adding and removing items from cart
+- Checkout using stripe API
+- Infinite Scroll
 
-### `npm run dev`
+## How to quickly try it?
 
-Runs the app in the development mode.<br />
-Open [http://localhost:8087](http://localhost:8087) to view it in the browser.
+👉 The project is hosted on Heroku: https://e-commerce-2021.herokuapp.com/
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## The stack
 
-### `npm build`
+### Back
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js
+- Express.js
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Front
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React
+- Redux/Redux-Saga/Reselect
+- Axios
+- Tailwind
 
-## Learn More
+### API I used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- https://exchangeratesapi.io/ - exchange rates
