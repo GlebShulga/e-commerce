@@ -2,7 +2,6 @@ This project was made with [Create React App](https://github.com/facebook/create
 
 ## Key Features
 
-- Sign-Up/Sign-In with validation and api error popups
 - Fully Responsive
 - 2 types of sorting
 - Currency changing
