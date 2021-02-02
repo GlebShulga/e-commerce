@@ -21,10 +21,12 @@ const Header = () => {
   return (
     <div id="brand-name" className="text-center my-1 bg-gray-50">
       {useBeforeunload(() => localStorage.setItem('basketSaving', JSON.stringify(basketState)))}
-      <Link to="/" className="font-bold text-4xl">
-        Best Shop
-      </Link>
-      <div className="container mx-auto flex justify-between p-5 flex-col md:flex-row items-center">
+      <div className="py-2">
+        <Link to="/" className="font-bold text-4xl text-indigo-800">
+          Gadsby Shop
+        </Link>
+      </div>
+      <div className="container mx-auto flex justify-between flex-col md:flex-row items-center">
         <div className="flex flex-col items-center">
           <Currency />
           <Sort />

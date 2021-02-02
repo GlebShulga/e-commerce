@@ -12,7 +12,7 @@ const MainPage = () => {
   const basket = useSelector((s) => s.basket.listOfIds)
   return (
     <div>
-      <Head title="Hello" />
+      <Head title="Main page" />
       <div className="sticky top-0 w-screen">
         <Header />
       </div>
