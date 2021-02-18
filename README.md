@@ -7,7 +7,6 @@ This project was made with [Create React App](https://github.com/facebook/create
 - Currency changing
 - Adding and removing items from cart
 - Checkout using stripe API
-- Infinite Scroll
 
 ## How to quickly try it?
 
