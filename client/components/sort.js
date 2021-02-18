@@ -9,8 +9,13 @@ const Sort = () => {
   const sortHover = 'sortHover:text-white sortHover:bg-blue-400'
 
   return (
-    <div>
-      <select onChange={(e) => dispatch(sort(e.target.value))} className={sortButton}>
+    <label htmlFor="sorting">
+      <select
+        name="sorting"
+        id="sorting"
+        onChange={(e) => dispatch(sort(e.target.value))}
+        className={sortButton}
+      >
         <option disabled hidden>
           Sort by
         </option>
@@ -27,7 +32,7 @@ const Sort = () => {
           Title ▼
         </option>
       </select>
-    </div>
+    </label>
   )
 }
 

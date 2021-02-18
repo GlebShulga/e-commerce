@@ -23,7 +23,7 @@ const Card = ({ it, currentRate, currencyType, basketCount }) => {
             <button
               id="cart button"
               type="button"
-              className="flex ml-auto text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+              className="flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
               onClick={() => dispatch(addId(it.id, 1))}
             >
               Add to cart

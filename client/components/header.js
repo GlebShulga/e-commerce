@@ -19,7 +19,7 @@ const Header = () => {
     dispatch(getCurrency())
   }, [dispatch])
   return (
-    <div id="brand-name" className="text-center my-1 bg-gray-50">
+    <div lang="en" id="brand-name" className="text-center my-1 bg-gray-50">
       {useBeforeunload(() => localStorage.setItem('basketSaving', JSON.stringify(basketState)))}
       <div className="py-2">
         <Link to="/" className="font-bold text-4xl text-indigo-800">
