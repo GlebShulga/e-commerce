@@ -33,7 +33,7 @@ const Header = () => {
         </div>
         <div className="flex flex-col items-center">
           <CartIcon />
-          <Link to="/log" className="font-bold text-sm py-3">
+          <Link to="/log" tabIndex="-1" className="font-bold text-sm py-3">
             log history
           </Link>
         </div>

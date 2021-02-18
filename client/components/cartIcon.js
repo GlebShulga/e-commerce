@@ -10,7 +10,7 @@ const CartIcon = () => {
       <Link
         id="cartIcon"
         to="/basket"
-        className="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+        className="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500 focus-within:bg-blue-200"
       >
         <span className="absolute rounded-full bg-indigo-600 text-white text-xs -mt-1 -mr-2 px-1">
           {totalBasketCount}
