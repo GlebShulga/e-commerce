@@ -13,12 +13,12 @@ const Card = ({ it, currentRate, currencyType, basketCount }) => {
           <div className="no-underline hover:underline text-black">{it.title}</div>
         </h1>
       </header>
-      <div className="container mx-auto flex justify-between p-5 flex-col md:flex-row items-center">
+      <div className="container mx-auto flex justify-between p-5 flex-col md:flex-row items-center sm:px-2">
         <div>
           <span className="mx-1">{(it.price * currentRate).toFixed(2)}</span>
           <span>{currencyType}</span>
         </div>
-        <div>
+        <div className="sm:px-2">
           {!basketCount && (
             <button
               id="cart button"

@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <div lang="en" id="brand-name" className="text-center my-1 bg-gray-50">
       {useBeforeunload(() => localStorage.setItem('basketSaving', JSON.stringify(basketState)))}
-      <div className="container mx-auto flex justify-around items-baseline flex-col md:flex-row items-center">
+      <div className="container mx-auto flex justify-around items-baseline flex-col md:flex-row items-center sm:grid col-1">
         <div className="flex flex-col items-center">
           <Currency />
           <Sort />
@@ -45,7 +45,7 @@ const Header = () => {
         </Link>
         <div className="flex flex-col items-center">
           <CartIcon />
-          <Link to="/log" tabIndex="-1" className="font-bold text-sm pb-3">
+          <Link to="/log" tabIndex="-1" className="font-bold text-sm pb-3 sm:invisible">
             log history
           </Link>
         </div>
