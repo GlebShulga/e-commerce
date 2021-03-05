@@ -16,7 +16,7 @@ const CartIcon = () => {
           {totalBasketCount}
         </span>
         <svg
-          className="h-7 w-12"
+          className="h-8 w-13"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

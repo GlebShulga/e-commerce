@@ -23,8 +23,8 @@ const Basket = () => {
       <Header />
       <div className="border">
         <div key="basketTable" className="flex justify-center my-6">
-          <div className="flex flex-col w-full text-gray-800 bg-white md:w-4/5 lg:w-4/5">
-            <div className="text-3xl font-semibold px-2">Basket</div>
+          <div className="flex flex-col w-full text-gray-800 bg-gray-50 md:w-4/5 lg:w-4/5">
+            {/* <div className="text-3xl font-semibold px-2">Basket</div> */}
             <div className="flex-1 shadow-lg pin-r pin-y p-8">
               <table className="w-full text-sm lg:text-base" cellSpacing="0">
                 <thead>

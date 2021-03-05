@@ -8,7 +8,7 @@ const AddToBasket = ({ it, basketCount }) => {
     <div className="flex flex-row border h-10 w-24 rounded-lg">
       <button
         type="button"
-        className="font-semibold border-r bg-red-600 hover:bg-red-500 text-white border-gray-400 h-full w-20 flex rounded-l focus:outline-none cursor-pointer focus-within:bg-red-900"
+        className="font-semibold border-r bg-red-400 hover:bg-red-500 text-white border-gray-400 h-full w-20 flex rounded-l focus:outline-none cursor-pointer focus-within:bg-red-900"
         onClick={() => dispatch(addId(it.id, -1))}
       >
         <span className="m-auto">-</span>
@@ -18,7 +18,7 @@ const AddToBasket = ({ it, basketCount }) => {
       </div>
       <button
         type="button"
-        className="font-semibold border-l bg-blue-600 hover:bg-blue-500 text-white border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer focus-within:bg-blue-900"
+        className="font-semibold border-l bg-blue-400 hover:bg-blue-500 text-white border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer focus-within:bg-blue-900"
         onClick={() => dispatch(addId(it.id, 1))}
       >
         <span className="m-auto">+</span>
