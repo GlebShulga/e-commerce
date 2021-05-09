@@ -22,7 +22,7 @@ This project was made with [Create React App](https://github.com/facebook/create
 ### Front
 
 - React
-- Redux/Redux-Saga/Reselect
+- Redux/Redux-Thunk/Reselect
 - Axios
 - Tailwind
 
