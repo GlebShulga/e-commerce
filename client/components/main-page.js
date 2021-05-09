@@ -6,9 +6,7 @@ import Card from './card'
 import ScrollArrow from './scrollArrow'
 
 const MainPage = () => {
-  const listOfGoods = useSelector((s) => s.goods.list)
-  const currentRate = useSelector((s) => s.goods.currentRate)
-  const currencyType = useSelector((s) => s.goods.currency)
+  const { list: listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
   const basket = useSelector((s) => s.basket.listOfIds)
   return (
     <div>

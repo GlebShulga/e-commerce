@@ -6,17 +6,16 @@ import Header from './header'
 import AddToBasket from './addToBasket'
 
 const Basket = () => {
-  const listOfGoods = useSelector((s) => s.goods.list)
+  const { list: listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
   const basket = useSelector((s) => s.basket.listOfIds)
   const basketId = basket.map((it) => it.id)
   const goodsInBasket = listOfGoods.filter((it) => basketId.indexOf(it.id) !== -1)
-  const currentRate = useSelector((s) => s.goods.currentRate)
-  const currencyType = useSelector((s) => s.goods.currency)
   const basketTotalPrice = basket.reduce((acc, rec) => {
     const productPrice =
       (goodsInBasket.find((item) => item.id === rec.id)?.price || 0) * rec.quantity
     return acc + productPrice
   }, 0)
+  const CurrentRateTotalPrice = (basketTotalPrice * currentRate).toFixed(2)
   return (
     <div>
       <Head title="Basket" />
@@ -79,9 +78,7 @@ const Basket = () => {
                   Total
                 </div>
                 <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                  <span className="total-amount mx-1">
-                    {(basketTotalPrice * currentRate).toFixed(2)}
-                  </span>
+                  <span className="total-amount mx-1">{CurrentRateTotalPrice}</span>
                   <span>{currencyType}</span>
                 </div>
               </div>
