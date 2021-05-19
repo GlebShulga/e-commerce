@@ -4,9 +4,6 @@ import { sort } from '../redux/reducers/goods'
 
 const Sort = () => {
   const dispatch = useDispatch()
-  const sortButton =
-    'border border-gray-700 bg-white block text-gray-700 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline focus-within:bg-blue-200'
-  const sortHover = 'sortHover:text-white sortHover:bg-blue-400'
 
   return (
     <label htmlFor="sorting">
@@ -14,21 +11,21 @@ const Sort = () => {
         name="sorting"
         id="sorting"
         onChange={(e) => dispatch(sort(e.target.value))}
-        className={sortButton}
+        className="sortButton"
       >
         <option disabled hidden>
           Sort by
         </option>
-        <option className={sortHover} value={`{ "type": "price", "order": 1 }`}>
+        <option className="sortHover" value={`{ "type": "price", "order": 1 }`}>
           Price ▲
         </option>
-        <option className={sortHover} value={`{ "type": "price", "order": -1 }`}>
+        <option className="sortHover" value={`{ "type": "price", "order": -1 }`}>
           Price ▼
         </option>
-        <option className={sortHover} value={`{ "type": "title", "order": 1 }`}>
+        <option className="sortHover" value={`{ "type": "title", "order": 1 }`}>
           Title ▲
         </option>
-        <option className={sortHover} value={`{ "type": "title", "order": -1 }`}>
+        <option className="sortHover" value={`{ "type": "title", "order": -1 }`}>
           Title ▼
         </option>
       </select>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import Head from './head'
 import Header from './header'
@@ -8,13 +8,20 @@ import AddToBasket from './addToBasket'
 const Basket = () => {
   const { list: listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
   const basket = useSelector((s) => s.basket.listOfIds)
-  const basketId = basket.map((it) => it.id)
-  const goodsInBasket = listOfGoods.filter((it) => basketId.indexOf(it.id) !== -1)
-  const basketTotalPrice = basket.reduce((acc, rec) => {
-    const productPrice =
-      (goodsInBasket.find((item) => item.id === rec.id)?.price || 0) * rec.quantity
-    return acc + productPrice
-  }, 0)
+  const basketElement = basket.map((it) => it.id)
+  const goodsInBasket = useMemo(
+    () => listOfGoods.filter((it) => basketElement.indexOf(it.id) !== -1),
+    [listOfGoods, basketElement]
+  )
+  const basketTotalPrice = useMemo(
+    () =>
+      basket.reduce((acc, rec) => {
+        const productPrice =
+          (goodsInBasket.find((item) => item.id === rec.id)?.price || 0) * rec.quantity
+        return acc + productPrice
+      }, 0),
+    [basket, goodsInBasket]
+  )
   const CurrentRateTotalPrice = (basketTotalPrice * currentRate).toFixed(2)
   return (
     <div>
@@ -23,7 +30,6 @@ const Basket = () => {
       <div className="border">
         <div key="basketTable" className="flex justify-center my-6">
           <div className="flex flex-col w-full text-gray-800 bg-gray-50 md:w-4/5 lg:w-4/5">
-            {/* <div className="text-3xl font-semibold px-2">Basket</div> */}
             <div className="flex-1 shadow-lg pin-r pin-y p-8">
               <table className="w-full text-sm lg:text-base" cellSpacing="0">
                 <thead>

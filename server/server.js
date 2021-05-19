@@ -32,7 +32,7 @@ middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/rates', (req, res) => {
   axios
-    .get('https://api.ratesapi.io/api/latest?base=USD&symbols=EUR,CAD,USD')
+    .get('https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD')
     .then(({ data }) => res.json(data.rates))
 })
 
