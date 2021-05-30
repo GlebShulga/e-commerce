@@ -26,7 +26,7 @@ const Header = () => {
           <Currency />
           <Sort />
         </div>
-        <Link to="/" className="flex justify-center">
+        <Link to="/" className="flex justify-center hidden md:flex">
           <div className="grid col-1 text-blue-600 font-bold">
             <div>
               <svg
@@ -45,7 +45,7 @@ const Header = () => {
         </Link>
         <div className="flex flex-col items-center">
           <CartIcon />
-          <Link to="/log" tabIndex="-1" className="font-bold text-sm pb-3 sm:invisible">
+          <Link to="/log" tabIndex="-1" className="font-bold text-sm pb-3 invisible">
             log history
           </Link>
         </div>
