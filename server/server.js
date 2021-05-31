@@ -34,6 +34,7 @@ server.get('/api/v1/rates', (req, res) => {
   axios
     .get('https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD')
     .then(({ data }) => res.json(data.rates))
+    .catch((err) => console.log(err))
 })
 
 server.get('/api/v1/data', (req, res) => {
