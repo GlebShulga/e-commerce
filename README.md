@@ -12,6 +12,22 @@ This project was made with [Create React App](https://github.com/facebook/create
 
 👉 The project is hosted on Heroku: https://e-commerce-2021.herokuapp.com/
 
+## How to use it?
+Install modules:
+npm install
+
+Run a project:
+npm run dev
+
+Run server only:
+npm run watch:server
+
+Run webpack development server (client):
+npm run watch:client
+
+Build a project:
+npm run build:client
+
 ## The stack
 
 ### Back
