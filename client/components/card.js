@@ -7,7 +7,12 @@ const Card = ({ it, currentRate, currencyType, basketCount }) => {
   const dispatch = useDispatch()
   return (
     <article className="overflow-hidden rounded-lg shadow-lg">
-      <img alt={it.title} className="block object-cover h-64 w-full" src={it.image} />
+      <img
+        alt={it.title}
+        className="block object-cover h-64 w-full"
+        src={it.image}
+        loading="lazy"
+      />
       <header className="flex items-center justify-between leading-tight p-2 md:p-4">
         <h1 className="text-lg">
           <div className="no-underline hover:underline text-black">{it.title}</div>
