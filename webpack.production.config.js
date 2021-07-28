@@ -5,7 +5,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const StringReplacePlugin = require('string-replace-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 
 const date = +new Date()
@@ -16,20 +16,13 @@ const APP_VERSION = Buffer.from((date - (date % (1000 * 60 * 30))).toString())
 const config = {
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserJSPlugin({ parallel: true }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }]
-        }
-      })
-    ]
+    minimizer: [new TerserJSPlugin({ parallel: true })]
   },
   entry: {
     main: './main.js'
   },
   resolve: {
+    fallback: { path: require.resolve('path-browserify') },
     alias: {
       d3: 'd3/index.js',
       './setPrototypeOf': './setPrototypeOf.js',
@@ -54,19 +47,6 @@ const config = {
   },
   module: {
     rules: [
-      {
-        test: /.html$/,
-        loader: StringReplacePlugin.replace({
-          replacements: [
-            {
-              pattern: /COMMITHASH/gi,
-              replacement() {
-                return gitRevisionPlugin.commithash()
-              }
-            }
-          ]
-        })
-      },
       {
         enforce: 'pre',
         test: /\.js$/,
@@ -173,6 +153,7 @@ const config = {
           { from: 'assets/images', to: 'images' },
           { from: 'assets/fonts', to: 'fonts' },
           { from: 'assets/manifest.json', to: 'manifest.json' },
+          { from: 'index.html', to: 'index.html' },
           {
             from: 'install-sw.js',
             to: 'js/install-sw.js',
@@ -200,6 +181,7 @@ const config = {
       },
       { parallel: 100 }
     ),
+    new CssMinimizerPlugin({ parallel: 4 }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       chunkFilename: 'css/[id].css',
