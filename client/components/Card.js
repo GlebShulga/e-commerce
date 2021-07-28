@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import AddToBasket from './addToBasket'
+import AddToBasket from './AddToBasket'
 import { addId } from '../redux/reducers/basket'
 
 const Card = ({ it, currentRate, currencyType, basketCount }) => {
@@ -41,6 +41,5 @@ const Card = ({ it, currentRate, currencyType, basketCount }) => {
   )
 }
 
-Card.propTypes = {}
 
 export default Card

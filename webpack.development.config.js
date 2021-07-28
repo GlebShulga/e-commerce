@@ -27,6 +27,7 @@ const config = {
       './defineProperty': './defineProperty.js',
       '../../helpers/esm/typeof': '../../helpers/esm/typeof.js',
       './assertThisInitialized': './assertThisInitialized.js',
+
       d3: 'd3/index.js',
       'react-dom': '@hot-loader/react-dom'
     }
@@ -150,18 +151,18 @@ const config = {
       {
         test: /\.svg$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          },
+          // {
+          //   loader: 'file-loader',
+          //   options: {
+          //     name: '[name].[ext]',
+          //     outputPath: 'fonts/'
+          //   }
+          // },
           {
             loader: 'svg-url-loader',
             options: {
-              limit: 10 * 1024,
-              noquotes: true
+              limit: 10 * 1024
+              // noquotes: true
             }
           }
         ]
@@ -170,6 +171,7 @@ const config = {
   },
 
   plugins: [
+    // new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/main.css',
       chunkFilename: 'css/[id].css',

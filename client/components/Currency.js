@@ -42,6 +42,5 @@ const Currency = () => {
   )
 }
 
-Currency.propTypes = {}
 
 export default Currency

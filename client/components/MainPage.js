@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Head from './head'
-import Header from './header'
-import Card from './card'
-import ScrollArrow from './scrollArrow'
+import Head from './Head'
+import Header from './Header'
+import Card from './Card'
+import ScrollArrow from './ScrollArrow'
 
 const MainPage = () => {
   const { list: listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
@@ -37,6 +37,5 @@ const MainPage = () => {
   )
 }
 
-MainPage.propTypes = {}
 
 export default React.memo(MainPage)

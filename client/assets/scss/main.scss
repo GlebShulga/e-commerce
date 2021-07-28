@@ -17,6 +17,9 @@
   .sortHover {
     @apply text-white bg-blue-400
   }
+  .addToBasketButton {
+    @apply font-semibold text-white border-gray-400 h-full w-20 flex focus:outline-none cursor-pointer
+  }
 }
 
 /* purgecss end ignore */

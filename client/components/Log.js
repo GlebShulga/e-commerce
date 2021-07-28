@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getLogs, delLogs } from '../redux/reducers/log'
-import Header from './header'
+import Header from './Header'
 
 const Log = () => {
   const logList = useSelector((s) => s.log.list)
@@ -29,7 +29,5 @@ const Log = () => {
     </>
   )
 }
-
-Log.propTypes = {}
 
 export default Log

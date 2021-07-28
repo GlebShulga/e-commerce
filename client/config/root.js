@@ -7,10 +7,10 @@ import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 
 import store, { history } from '../redux'
 
-import MainPage from '../components/mainPage'
+import MainPage from '../components/MainPage'
 import NotFound from '../components/404'
-import Basket from '../components/basket'
-import Log from '../components/log'
+import Basket from '../components/Basket'
+import Log from '../components/Log'
 
 import Startup from './startup'
 
