@@ -5,7 +5,8 @@ module.exports = {
       {
         targets: {
           browsers: '> 0.25%, not dead'
-        }
+        },
+        loose: true
       }
     ],
     '@babel/react',
