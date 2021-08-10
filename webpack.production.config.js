@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 require('dotenv').config()
+const fs = require('fs')
 
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -23,12 +24,9 @@ const config = {
   },
   resolve: {
     fallback: { path: require.resolve('path-browserify') },
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      d3: 'd3/index.js',
-      './setPrototypeOf': './setPrototypeOf.js',
-      './defineProperty': './defineProperty.js',
-      '../../helpers/esm/typeof': '../../helpers/esm/typeof.js',
-      './assertThisInitialized': './assertThisInitialized.js'
+      d3: 'd3/index.js'
     }
   },
   output: {
@@ -49,13 +47,13 @@ const config = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.js$/,
+        test: /\.js|jsx$/,
         exclude: /node_modules/,
         include: [/client/, /server/],
         use: ['eslint-loader']
       },
       {
-        test: /\.js$/,
+        test: /\.js|jsx$/,
         use: 'babel-loader',
         exclude: /node_modules/
       },
@@ -137,7 +135,8 @@ const config = {
           {
             loader: 'svg-url-loader',
             options: {
-              limit: 10 * 1024
+              limit: 10 * 1024,
+              noquotes: true
             }
           }
         ]
