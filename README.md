@@ -1,4 +1,4 @@
-This project was made with [Create React App](https://github.com/facebook/create-react-app), using [Redux](https://redux.js.org/).
+This project was made with [React Boilerplate](https://github.com/ovasylenko/skillcrucial-react-redux-boilerplate), using [Redux](https://redux.js.org/).
 
 ## Key Features
 
@@ -38,9 +38,9 @@ npm run build:client
 ### Front
 
 - React
-- Redux/Redux-Thunk/Reselect
+- Redux/Redux-Thunk
 - Axios
-- Tailwind
+- Tailwind CSS
 
 ### API I used
 
