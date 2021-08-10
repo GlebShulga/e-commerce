@@ -4,7 +4,7 @@
     "description": "Boilerplate SkillCrucial",
     "main": "index.js",
     "engines": {
-      "node": "14.x"
+        "node": "14.x"
     },
     "scripts": {
         "docker-start-dev": "docker-compose -f \"docker\\DEV.docker-compose.yml\" up",
@@ -90,6 +90,7 @@
         "express": "^4.17.1",
         "find-cache-dir": "^3.3.1",
         "history": "^4.10.1",
+        "path-browserify": "^1.0.1",
         "prop-types": "^15.7.2",
         "react": "17.0.1",
         "react-beforeunload": "^2.4.0",
