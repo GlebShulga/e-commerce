@@ -1,7 +1,7 @@
 {
-    "name": "boilerplate-skillcrucial",
-    "version": "0.0.2",
-    "description": "Boilerplate SkillCrucial",
+    "name": "e-commerce",
+    "version": "1.3",
+    "description": "e-commerce app",
     "main": "index.js",
     "engines": {
         "node": "14.x"
@@ -26,9 +26,7 @@
         "build:prod": "cross-env NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --color",
         "build:ssr": "cross-env NODE_ENV=production webpack --config webpack.ssr.config.js --progress --profile --color",
         "build": "npm run build:prod && npm run build:ssr",
-        "heroku-postbuild": "npm run build:prod && npm run build:ssr",
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "heroku-postbuild": "npm run build:prod && npm run build:ssr"
     },
     "author": "",
     "license": "MIT",
