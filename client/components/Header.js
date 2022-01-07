@@ -10,7 +10,7 @@ import logo from '../assets/images/logo.svg'
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
 const Header = () => {
-  const basketState = useSelector((s) => s.basket.listOfIds)
+  const basketState = useSelector((s) => s.basket.basketItemsDictionary)
   const dispatch = useDispatch()
 
   useEffect(() => {

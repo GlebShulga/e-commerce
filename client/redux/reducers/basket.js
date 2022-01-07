@@ -1,46 +1,50 @@
-export const ADD_ID = 'ADD_ID'
+export const CHANGE_ITEM_QUANTITY_IN_BASKET = 'CHANGE_ITEM_QUANTITY_IN_BASKET'
 const initialState = {
-  listOfIds: []
+  basketItemsDictionary: {}
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case ADD_ID: {
-      return { ...state, listOfIds: action.listOfIds, productTitle: action.productTitle }
+    case CHANGE_ITEM_QUANTITY_IN_BASKET: {
+      return {
+        ...state,
+        basketItemsDictionary: action.basketItemsDictionary,
+        productTitle: action.productTitle
+      }
     }
     default:
       return state
   }
 }
 
-export function addId(id, number = 1) {
+export function changeItemQuantityInBasket(id, number) {
   return (dispatch, getState) => {
     const store = getState()
-    const { listOfIds } = store.basket
-    const { list } = store.goods
-    let isElementFound = false
-    const productData = list.find((itemCard) => itemCard.id === id)
-    let newListOfIds = listOfIds.reduce((acc, rec) => {
-      if (rec.id === id) {
-        isElementFound = true
-        const newQuantity = Math.max(rec.quantity + number, 0)
-        if (newQuantity > 0) {
-          return [...acc, { id: rec.id, quantity: newQuantity }]
-        }
-        return [...acc]
+    const { basketItemsDictionary } = store.basket
+    const { listOfGoods } = store.goods
+    const dictionary = listOfGoods.reduce((acc, rec) => {
+      return {
+        ...acc,
+        [rec.id]: { id: rec.id, title: rec.title, image: rec.image, price: rec.price, quantity: 0 }
       }
-      return [...acc, rec]
-    }, [])
+    }, {})
+    const productData = dictionary[id]
 
-    if (!isElementFound) {
-      newListOfIds = [...newListOfIds, { id, quantity: 1 }]
+    const currentItemQuantityInBasket = basketItemsDictionary[id]?.quantity ?? 0
+    const newBasketItemsDictionary = {
+      ...basketItemsDictionary,
+      [id]: {
+        ...productData,
+        quantity: Math.max(currentItemQuantityInBasket + number, 0)
+      }
     }
+
     dispatch({
-      type: ADD_ID,
-      listOfIds: newListOfIds,
+      type: CHANGE_ITEM_QUANTITY_IN_BASKET,
+      basketItemsDictionary: newBasketItemsDictionary,
       number,
       id,
-      productTitle: productData.title
+      productTitle: productData?.title
     })
   }
 }

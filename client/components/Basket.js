@@ -7,23 +7,21 @@ import AddToBasket from './AddToBasket'
 import checkoutIcon from '../assets/images/checkoutIcon.svg'
 
 const Basket = () => {
-  const { list: listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
-  const basket = useSelector((s) => s.basket.listOfIds)
-  const basketElement = basket.map((it) => it.id)
+  const { currentRate, currency: currencyType } = useSelector((s) => s.goods)
+  const basketItemsDictionary = useSelector((s) => s.basket.basketItemsDictionary)
+
   const goodsInBasket = useMemo(
-    () => listOfGoods.filter((it) => basketElement.indexOf(it.id) !== -1),
-    [listOfGoods, basketElement]
+    () => Object.values(basketItemsDictionary).filter((item) => item.quantity > 0),
+    [basketItemsDictionary]
   )
   const basketTotalPrice = useMemo(
     () =>
-      basket.reduce((acc, rec) => {
-        const productPrice =
-          (goodsInBasket.find((item) => item.id === rec.id)?.price || 0) * rec.quantity
-        return acc + productPrice
+      goodsInBasket.reduce((acc, rec) => {
+        return acc + rec.price * rec.quantity
       }, 0),
-    [basket, goodsInBasket]
+    [goodsInBasket]
   )
-  const CurrentRateTotalPrice = (basketTotalPrice * currentRate).toFixed(2)
+  const currentRateTotalPrice = (basketTotalPrice * currentRate).toFixed(2)
   return (
     <div>
       <Head title="Basket" />
@@ -43,35 +41,35 @@ const Basket = () => {
                       </span>
                       <span className="hidden lg:inline">Quantity</span>
                     </th>
-                    <th className="hidden text-right md:table-cell">Unit price</th>
+                    <th className="hidden text-right md:table-cell">Price per unit</th>
                     <th className="text-right">Total price</th>
                   </tr>
                 </thead>
                 {goodsInBasket.map((item) => {
-                  const { quantity } = basket.find((it) => it.id === item.id)
+                  const { title, quantity, image, price } = item
                   return (
-                    <tbody key={item.id}>
+                    <tbody key={`${title} + ${price} + ${quantity}`}>
                       <tr>
                         <td className="hidden pb-4 md:table-cell">
                           <img
-                            alt={item.title}
+                            alt={title}
                             className="product__image block object-cover h-24 w-24"
-                            src={item.image}
+                            src={image}
                           />
                         </td>
-                        <td className="product__title mb-2 md:ml-4">{item.title}</td>
+                        <td className="product__title mb-2 md:ml-4">{title}</td>
                         <td className="md:justify-end md:flex mt-6">
-                          <AddToBasket basketCount={quantity} it={item} />
+                          <AddToBasket itemQuantityInBasket={quantity} it={item} />
                         </td>
                         <td className="hidden text-right md:table-cell">
                           <span className="product__price mx-1 text-sm lg:text-base font-medium">
-                            {(item.price * currentRate).toFixed(2)}
+                            {(price * currentRate).toFixed(2)}
                           </span>
                           <span className="text-sm lg:text-base font-medium">{currencyType}</span>
                         </td>
                         <td className="text-right">
                           <span className="product__total_price mx-1 text-sm lg:text-base font-medium">
-                            {(quantity * item.price * currentRate).toFixed(2)}
+                            {(quantity * price * currentRate).toFixed(2)}
                           </span>
                           <span className="text-sm lg:text-base font-medium">{currencyType}</span>
                         </td>
@@ -85,7 +83,7 @@ const Basket = () => {
                   Total
                 </div>
                 <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                  <span className="total-amount mx-1">{CurrentRateTotalPrice}</span>
+                  <span className="total-amount mx-1">{currentRateTotalPrice}</span>
                   <span>{currencyType}</span>
                 </div>
               </div>

@@ -6,8 +6,8 @@ import Card from './Card'
 import ScrollArrow from './ScrollArrow'
 
 const MainPage = () => {
-  const { list: listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
-  const basket = useSelector((s) => s.basket.listOfIds)
+  const { listOfGoods, currentRate, currency: currencyType } = useSelector((s) => s.goods)
+  const basketItemsDictionary = useSelector((s) => s.basket.basketItemsDictionary)
   return (
     <div>
       <Head title="AB Shop" />
@@ -18,14 +18,14 @@ const MainPage = () => {
         <div className="flex flex-wrap -mx-1 lg:-mx-4">
           <div className="grid md:grid-cols-3 gap-8 m-5 max-w-5xl m-auto">
             {listOfGoods.map((it) => {
-              const basketCount = basket.find((itBas) => itBas.id === it.id)
+              const itemQuantityInBasket = basketItemsDictionary[it.id]?.quantity
               return (
                 <Card
                   key={it.id}
                   it={it}
                   currentRate={currentRate}
                   currencyType={currencyType}
-                  basketCount={basketCount?.quantity}
+                  itemQuantityInBasket={itemQuantityInBasket}
                 />
               )
             })}
@@ -36,6 +36,5 @@ const MainPage = () => {
     </div>
   )
 }
-
 
 export default React.memo(MainPage)

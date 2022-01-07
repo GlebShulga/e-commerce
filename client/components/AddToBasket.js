@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { addId } from '../redux/reducers/basket'
+import { changeItemQuantityInBasket } from '../redux/reducers/basket'
 
-const AddToBasket = ({ it, basketCount }) => {
+const AddToBasket = ({ it, itemQuantityInBasket }) => {
   const dispatch = useDispatch()
 
   const onAdd = useCallback(() => {
-    dispatch(addId(it.id, -1))
+    dispatch(changeItemQuantityInBasket(it.id, -1))
   }, [it.id])
   const onSubtract = useCallback(() => {
-    dispatch(addId(it.id, 1))
+    dispatch(changeItemQuantityInBasket(it.id, 1))
   }, [it.id])
 
   return (
@@ -22,7 +22,7 @@ const AddToBasket = ({ it, basketCount }) => {
         <span className="m-auto">-</span>
       </button>
       <div className="product__amout bg-white w-24 text-xs md:text-base flex items-center justify-center cursor-default">
-        {basketCount}
+        {itemQuantityInBasket}
       </div>
       <button
         type="button"

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import AddToBasket from './AddToBasket'
-import { addId } from '../redux/reducers/basket'
+import { changeItemQuantityInBasket } from '../redux/reducers/basket'
 
-const Card = ({ it, currentRate, currencyType, basketCount }) => {
+const Card = ({ it, currentRate, currencyType, itemQuantityInBasket }) => {
   const dispatch = useDispatch()
   return (
     <article className="overflow-hidden rounded-lg shadow-lg">
@@ -24,22 +24,23 @@ const Card = ({ it, currentRate, currencyType, basketCount }) => {
           <span>{currencyType}</span>
         </div>
         <div className="sm:px-2">
-          {!basketCount && (
+          {!itemQuantityInBasket && (
             <button
               id="cart button"
               type="button"
               className="flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded focus-within:bg-gray-500"
-              onClick={() => dispatch(addId(it.id, 1))}
+              onClick={() => dispatch(changeItemQuantityInBasket(it.id, 1))}
             >
               Add to cart
             </button>
           )}
-          {basketCount > 0 && <AddToBasket basketCount={basketCount} it={it} />}
+          {itemQuantityInBasket > 0 && (
+            <AddToBasket itemQuantityInBasket={itemQuantityInBasket} it={it} />
+          )}
         </div>
       </div>
     </article>
   )
 }
-
 
 export default Card

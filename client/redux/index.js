@@ -21,7 +21,7 @@ const localBasket = localStorage.getItem('basketSaving')
 if (localBasket) {
   preloadedState = {
     basket: {
-      listOfIds: JSON.parse(localBasket)
+      basketItemsDictionary: JSON.parse(localBasket)
     }
   }
 }

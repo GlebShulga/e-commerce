@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_ID } from './basket'
+import { CHANGE_ITEM_QUANTITY_IN_BASKET } from './basket'
 import { SET_CURRENT_RATE, GET_SORTED_GOODS } from './goods'
 
 const GET_LOGS = 'POST_LOG_BASKET'
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
         list
       }
     }
-    case ADD_ID: {
+    case CHANGE_ITEM_QUANTITY_IN_BASKET: {
       const messageBasket = `${action.productTitle} was ${
         action.number > 0 ? 'added to the basket' : 'removed from basket'
       } ${+new Date()}`

@@ -6,7 +6,7 @@ export const SET_CURRENT_RATE = 'SET_CURRENT_RATE'
 export const GET_SORTED_GOODS = 'GET_SORTED_GOODS'
 
 const initialState = {
-  list: [],
+  listOfGoods: [],
   rates: {},
   currentRate: 1,
   currency: 'USD'
@@ -23,10 +23,10 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GET_GOODS:
     case GET_SORTED_GOODS: {
-      const { list } = action
+      const { listOfGoods } = action
       return {
         ...state,
-        list: getImage(list)
+        listOfGoods: getImage(listOfGoods)
       }
     }
     case GET_CURRENCY: {
@@ -52,8 +52,8 @@ export default (state = initialState, action) => {
 export function getGoods() {
   return (dispatch) => {
     axios('/api/v1/data')
-      .then(({ data: list }) => dispatch({ type: GET_GOODS, list }))
-      .catch(() => dispatch({ type: GET_GOODS, list: [] }))
+      .then(({ data: listOfGoods }) => dispatch({ type: GET_GOODS, listOfGoods }))
+      .catch(() => dispatch({ type: GET_GOODS, listOfGoods: [] }))
   }
 }
 
@@ -79,16 +79,16 @@ export function setCurrentRate(currencyType) {
 export function sort(str) {
   return (dispatch, getState) => {
     const store = getState()
-    const { list } = store.goods
+    const { listOfGoods } = store.goods
     const typeOfSort = JSON.parse(str)
-    const sortedList = [...list].sort(
+    const sortedListOfGoods = [...listOfGoods].sort(
       (a, b) =>
         (typeOfSort.type === 'price' ? a.price - b.price : a.title.localeCompare(b.title)) *
         typeOfSort.order
     )
     dispatch({
       type: GET_SORTED_GOODS,
-      list: sortedList,
+      listOfGoods: sortedListOfGoods,
       sortType: typeOfSort.type
     })
   }
