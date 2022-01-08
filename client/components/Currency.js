@@ -6,38 +6,27 @@ import { setCurrentRate } from '../redux/reducers/goods'
 const Currency = () => {
   const dispatch = useDispatch()
   const currencyType = useSelector((s) => s.goods.currency)
+  const currencyList = ['USD', 'EUR', 'CAD']
+
   return (
     <div>
-      <button
-        tabIndex="0"
-        type="button"
-        className={
-          currencyType === 'USD' ? 'pushedButtonCurrencyClassName' : 'buttonCurrencyClassName'
-        }
-        onClick={() => dispatch(setCurrentRate('USD'))}
-      >
-        USD
-      </button>
-      <button
-        tabIndex="0"
-        type="button"
-        className={
-          currencyType === 'EUR' ? 'pushedButtonCurrencyClassName' : 'buttonCurrencyClassName'
-        }
-        onClick={() => dispatch(setCurrentRate('EUR'))}
-      >
-        EUR
-      </button>
-      <button
-        tabIndex="0"
-        type="button"
-        className={
-          currencyType === 'CAD' ? 'pushedButtonCurrencyClassName' : 'buttonCurrencyClassName'
-        }
-        onClick={() => dispatch(setCurrentRate('CAD'))}
-      >
-        CAD
-      </button>
+      {currencyList.map((currency) => {
+        return (
+          <button
+            key={currency}
+            tabIndex="0"
+            type="button"
+            className={
+              currencyType === currency
+                ? 'pushedButtonCurrencyClassName'
+                : 'buttonCurrencyClassName'
+            }
+            onClick={() => dispatch(setCurrentRate(currency))}
+          >
+            {currency}
+          </button>
+        )
+      })}
     </div>
   )
 }
