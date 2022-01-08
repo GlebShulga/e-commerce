@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import Head from './Head'
 import Header from './Header'
-import AddToBasket from './AddToBasket'
+import ItemInBasket from './ItemInBasket'
 import checkoutIcon from '../assets/images/checkoutIcon.svg'
 
 const Basket = () => {
@@ -46,35 +46,38 @@ const Basket = () => {
                   </tr>
                 </thead>
                 {goodsInBasket.map((item) => {
-                  const { title, quantity, image, price } = item
+                  const { title, quantity, price } = item
                   return (
                     <tbody key={`${title} + ${price} + ${quantity}`}>
-                      <tr>
-                        <td className="hidden pb-4 md:table-cell">
-                          <img
-                            alt={title}
-                            className="product__image block object-cover h-24 w-24"
-                            src={image}
-                          />
-                        </td>
-                        <td className="product__title mb-2 md:ml-4">{title}</td>
-                        <td className="md:justify-end md:flex mt-6">
-                          <AddToBasket itemQuantityInBasket={quantity} it={item} />
-                        </td>
-                        <td className="hidden text-right md:table-cell">
-                          <span className="product__price mx-1 text-sm lg:text-base font-medium">
-                            {(price * currentRate).toFixed(2)}
-                          </span>
-                          <span className="text-sm lg:text-base font-medium">{currencyType}</span>
-                        </td>
-                        <td className="text-right">
-                          <span className="product__total_price mx-1 text-sm lg:text-base font-medium">
-                            {(quantity * price * currentRate).toFixed(2)}
-                          </span>
-                          <span className="text-sm lg:text-base font-medium">{currencyType}</span>
-                        </td>
-                      </tr>
+                      <ItemInBasket item={item} />
                     </tbody>
+                    // <tbody key={`${title} + ${price} + ${quantity}`}>
+                    //   <tr>
+                    //     <td className="hidden pb-4 md:table-cell">
+                    //       <img
+                    //         alt={title}
+                    //         className="product__image block object-cover h-24 w-24"
+                    //         src={image}
+                    //       />
+                    //     </td>
+                    //     <td className="product__title mb-2 md:ml-4">{title}</td>
+                    //     <td className="md:justify-end md:flex mt-6">
+                    //       <AddToBasket itemQuantityInBasket={quantity} it={item} />
+                    //     </td>
+                    //     <td className="hidden text-right md:table-cell">
+                    //       <span className="product__price mx-1 text-sm lg:text-base font-medium">
+                    //         {(price * currentRate).toFixed(2)}
+                    //       </span>
+                    //       <span className="text-sm lg:text-base font-medium">{currencyType}</span>
+                    //     </td>
+                    //     <td className="text-right">
+                    //       <span className="product__total_price mx-1 text-sm lg:text-base font-medium">
+                    //         {(quantity * price * currentRate).toFixed(2)}
+                    //       </span>
+                    //       <span className="text-sm lg:text-base font-medium">{currencyType}</span>
+                    //     </td>
+                    //   </tr>
+                    // </tbody>
                   )
                 })}
               </table>
