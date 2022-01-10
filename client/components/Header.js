@@ -10,15 +10,14 @@ import logo from '../assets/images/logo.svg'
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
 const Header = () => {
-  const basketState = useSelector((s) => s.basket.basketItemsDictionary)
   const dispatch = useDispatch()
+  const basketState = useSelector((s) => s.basket.basketItemsDictionary)
 
   useEffect(() => {
     dispatch(getGoods())
-  }, [dispatch])
-  useEffect(() => {
     dispatch(getCurrency())
-  }, [dispatch])
+  }, [])
+
   return (
     <div lang="en" id="brand-name" className="text-center my-1 bg-gray-50">
       {useBeforeunload(() => localStorage.setItem('basketSaving', JSON.stringify(basketState)))}
