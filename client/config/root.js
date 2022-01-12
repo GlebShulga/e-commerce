@@ -9,7 +9,7 @@ import store, { history } from '../redux'
 
 import MainPage from '../components/MainPage'
 import NotFound from '../components/404'
-import Basket from '../components/Basket'
+import Basket from '../components/basket/Basket'
 import Log from '../components/Log'
 
 import Startup from './startup'

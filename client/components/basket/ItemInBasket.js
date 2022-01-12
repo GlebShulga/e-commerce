@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react'
 import { useSelector } from 'react-redux'
-import AddToBasket from './AddToBasket'
+import AddToBasket from '../AddToBasket'
 
 const ItemInBasket = ({ item }) => {
   const { currentRate, currency: currencyType } = useSelector((s) => s.goods)

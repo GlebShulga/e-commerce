@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import Head from './Head'
-import Header from './Header'
+import Head from '../Head'
+import Header from '../Header'
 import ItemInBasket from './ItemInBasket'
-import checkoutIcon from '../assets/images/checkoutIcon.svg'
+import checkoutIcon from '../../assets/images/checkoutIcon.svg'
 
 const Basket = () => {
   const { currentRate, currency: currencyType } = useSelector((s) => s.goods)
