@@ -138,7 +138,7 @@
         "jest-cli": "^27.0.6",
         "mini-css-extract-plugin": "^2.2.0",
         "node-hot-loader": "^1.21.4",
-        "node-sass": "^7.0.0",
+        "node-sass": "^9.0.0",
         "nodemon": "^2.0.12",
         "postcss": "^8.3.6",
         "postcss-import": "^14.0.2",
